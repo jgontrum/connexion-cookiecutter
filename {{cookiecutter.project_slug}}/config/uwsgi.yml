@@ -1,0 +1,10 @@
+uwsgi:
+  http: :{{cookiecutter.api_port}}
+  module: {{cookiecutter.project_slug}}.app
+  enable-threads: true
+  workers: 16
+  virtualenv: env/
+  logformat: %(addr) - %(status) - %(method) - %(uri) - %(msecs)ms
+  req-logger: file:logs/requests.txt
+  log-req-encoder: format ${strftime:%%Y-%%m-%%dT%%H:%%M:%%S} ${msgnl}
+  logger: file:logs/uwsgi.txt

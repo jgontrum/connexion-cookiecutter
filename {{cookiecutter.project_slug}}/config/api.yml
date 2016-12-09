@@ -1,0 +1,120 @@
+swagger: '2.0'
+info:
+  title: {{cookiecutter.project_name}}
+  version: "0.1"
+consumes:
+  - application/json
+produces:
+  - application/json
+basePath: /api
+paths:
+  /foo:
+    post:
+      # Tags are used in the SwaggerUI documentation only.
+      tags: [Foo]
+      # The operationId is the path to the python function to be called.
+      operationId: {{cookiecutter.project_slug}}.api.foo.post
+      summary: Send some data formated as JSON to the server.
+      parameters:
+        - name: request # The name in the
+          in: body
+          schema:
+            # For reusability reasons, we can just point to a schema.
+            $ref: '#/definitions/FooRequest'
+      responses:
+        200: # If we return with a 200 status code...
+          description: Returns a part of the input (hey, it's just a demo...)
+          schema:
+            type: object
+            properties:
+              returnData:
+                type: string
+                description: Some data that is returned.
+                example: This is an example string.
+          # Example: {"returnData": "This is an example string."}
+    get:
+      tags: [Foo]
+      operationId: {{cookiecutter.project_slug}}.api.foo.get
+      summary: Simply call an URL and retrieve a JSON data
+      responses:
+        200:
+          description: Returns a JSON containing a boolean.
+          schema:
+            type: object
+            properties:
+              bar:
+                type: boolean
+                description: Some boolean data that is returned.
+                example: true
+  /complicated/complex:
+    get:
+      tags: [Complex]
+      operationId: {{cookiecutter.project_slug}}.api.complicated.complex.get
+      summary: Returns a very complex JSON object
+      responses:
+        200:
+          description: Returns a complex JSON to show how to define a schema with different data types etc.
+          schema:
+            $ref: '#/definitions/ComplexResponse'
+
+definitions:
+  FooRequest:
+    type: object
+    required: # These fields have to exists
+      - data
+    properties:
+      data:
+        type: string
+        description: Some string.
+        example: Blah!
+        readOnly: true
+
+  ComplexResponse:
+    type: object
+    required:
+      - text
+      - createdAt
+    properties:
+      text:
+        type: string
+        description: Some string.
+        example: This is an example.
+      number:
+        type: number
+        description: A number (float/int).
+        example: 1
+      specialText:
+        type: string
+        description: Some text that has to be at least 10 characters long.
+        example: This is an example.
+        minLength: 10
+      specialNumber:
+        type: number
+        description: A number (float/int) in the range of 10 to 100
+        example: 50
+        minimum: 10
+        maximum: 100
+      good:
+        type: boolean
+        description: We even support booleans.
+        example: false
+      createdAt:
+        type: string
+        format: date-time
+        description: Can you believe it? Even dates can be validated!
+        example: 2016-12-09T22:06:39.103496Z
+      aNiceList:
+        type: array
+        description: Also lists (arrays) are possible. The definition under 'items' must be true for all members of the list.
+        items:
+          type: string
+          description: An element of the list.
+          example: I am a list element
+      aNestedObject:
+        type: object
+        description: Oh, and nested objects are also possible.
+        properties:
+          iAmNested:
+            type: string
+            description: Some string again.
+            example: I am a string in an object

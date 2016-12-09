@@ -1,0 +1,11 @@
+{
+    "full_name": "Your Name",
+    "email": "mail@example.com",
+    "username": "me",
+    "username_slug": "{{ cookiecutter.username.lower().replace(' ', '_') }}",
+    "project_name": "Demo API",
+    "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
+    "project_description": "RESTful APIs with Connexion + Flask + uWSGI",
+    "license": ["MIT license", "BSD license", "ISC license", "Apache Software License 2.0", "GNU General Public License v3", "Not open source"],
+    "api_port": "8080"
+}
