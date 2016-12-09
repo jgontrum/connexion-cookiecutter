@@ -10,7 +10,7 @@ Cookiecutter is a templating tool that helps you to get started with a project r
 ## Usage
 
 ```bash
-cookiecutter https://github.com/jgontrum/connexion-boilerplate.git --checkout cookiecutter
+cookiecutter https://github.com/jgontrum/connexion-cookiecutter.git
 
 cd <PROJECTNAME>/
 make
