@@ -23,7 +23,7 @@ build-docker: clean
 
 start-docker:
 	mkdir -p /tmp/{{cookiecutter.project_slug}}-logs
-	docker run --name "myapi" -p "127.0.0.1:{{cookiecutter.api_port}}:{{cookiecutter.api_port}}" -v "/tmp/{{cookiecutter.project_slug}}-logs:/app/logs" {{cookiecutter.username_slug}}/{{cookiecutter.project_slug}}
+	docker run --name "{{cookiecutter.project_slug}}" -p "127.0.0.1:{{cookiecutter.api_port}}:{{cookiecutter.api_port}}" -v "/tmp/{{cookiecutter.project_slug}}-logs:/app/logs" {{cookiecutter.username_slug}}/{{cookiecutter.project_slug}}
 
 start: env/bin/python
 	env/bin/uwsgi --yaml=config/uwsgi.yml
