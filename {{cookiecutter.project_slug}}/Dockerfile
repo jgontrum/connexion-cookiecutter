@@ -1,12 +1,22 @@
 FROM python:3.5
 MAINTAINER {{cookiecutter.full_name}} <{{cookiecutter.email}}>
 
+# Install the needed packages
+RUN apt-get update
+RUN apt-get install -y supervisor nginx
+
+# Copy and set up the app
 RUN mkdir /app
 RUN pip install virtualenv
-
 COPY . /app
 RUN cd /app && make
 
-WORKDIR /app
+# Configure nginx
+RUN mv /app/config/nginx.conf /etc/nginx/sites-available/default
+RUN echo "daemon off;" >> /etc/nginx/nginx.conf 
+
+# Configure supervisor
+RUN mv /app/config/supervisor.conf /etc/supervisor/conf.d/
+
 EXPOSE {{cookiecutter.api_port}}
-CMD make start
+CMD ["supervisord", "-n"]
