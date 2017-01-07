@@ -5,7 +5,8 @@ uwsgi:
   enable-threads: true
   workers: 8
   virtualenv: env/
-  logformat: %(addr) - %(status) - %(method) - %(uri) - %(msecs)ms
-  req-logger: file:logs/requests.txt
-  log-req-encoder: format ${strftime:%%Y-%%m-%%dT%%H:%%M:%%S} ${msgnl}
-  logger: file:logs/uwsgi.txt
+  logformat: {"service": "{{cookiecutter.project_slug}}", "ip": "%(addr)", "status": %(status), "method": "%(method)", "uri": "%(uri)", "duration": %(msecs)}
+  req-logger: socket:{{cookiecutter.logstash_url}}:{{cookiecutter.logstash_request_port}}
+  log-req-encoder: format ${msg}
+  logger: socket:{{cookiecutter.logstash_url}}:{{cookiecutter.logstash_uwsgi_port}}
+  log-req-encoder: json {"message": "${msg}"}

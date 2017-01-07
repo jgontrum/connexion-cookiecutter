@@ -7,5 +7,8 @@
     "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
     "project_description": "RESTful APIs with Connexion + Flask + uWSGI",
     "license": ["MIT license", "BSD license", "ISC license", "Apache Software License 2.0", "GNU General Public License v3", "Not open source"],
-    "api_port": "8080"
+    "api_port": "8080",
+    "logstash_url": "logstash",
+    "logstash_request_port": "1700",
+    "logstash_uwsgi_port": "1701"
 }
