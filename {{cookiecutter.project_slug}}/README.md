@@ -25,6 +25,15 @@ then add the Python logic for the *operationId* under /{{cookiecutter.project_sl
 
 Go to [here](http://localhost:{{cookiecutter.api_port}}/api/v1/ui) to view the brilliant SwaggerUI documentation of your API.
 
+## Healthcheck
+
+Configure a health check under /api/v1/health (GET).
+
+The check should return 200 if everything is fine, 424 if a depending service is not working or 503 if the API does not work correctly.
+Additionally, a JSON is returned containing the fields 'health', 'dependencies' and 'message'. The first one defines the color ('green', 'yellow', 'red') that
+correspond to the status codes. The second one is the name of the depending services that cannot be reached and 'message'
+can hold a string defining the cause of a problem.
+
 ## Logstash
 
 By default, this project sends request logs and other (e.g. error logs) to different logstash UDP ports.
