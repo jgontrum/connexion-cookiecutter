@@ -2,7 +2,7 @@
 
 {{cookiecutter.project_description}}
 
-The API can be reached under ```http://localhost:{{cookiecutter.api_port}}/api/```.
+The API can be reached under ```http://localhost:{{cookiecutter.api_port}}/api/v1```.
 
 ## Requirements
 
@@ -23,7 +23,7 @@ then add the Python logic for the *operationId* under /{{cookiecutter.project_sl
 
 ## SwaggerUI
 
-Go to [here](http://localhost:{{cookiecutter.api_port}}/api/ui) to view the brilliant SwaggerUI documentation of your API.
+Go to [here](http://localhost:{{cookiecutter.api_port}}/api/v1/ui) to view the brilliant SwaggerUI documentation of your API.
 
 ## Logstash
 

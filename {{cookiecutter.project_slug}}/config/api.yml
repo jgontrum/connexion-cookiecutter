@@ -6,20 +6,17 @@ consumes:
   - application/json
 produces:
   - application/json
-basePath: /api
+basePath: /api/v1
 paths:
   /foo:
     post:
-      # Tags are used in the SwaggerUI documentation only.
       tags: [Foo]
-      # The operationId is the path to the python function to be called.
       operationId: {{cookiecutter.project_slug}}.api.foo.post
       summary: Send some data formated as JSON to the server.
       parameters:
-        - name: request # The name in the
+        - name: request
           in: body
           schema:
-            # For reusability reasons, we can just point to a schema.
             $ref: '#/definitions/FooRequest'
       responses:
         200: # If we return with a 200 status code...
@@ -31,7 +28,7 @@ paths:
                 type: string
                 description: Some data that is returned.
                 example: This is an example string.
-          # Example: {"returnData": "This is an example string."}
+
     get:
       tags: [Foo]
       operationId: {{cookiecutter.project_slug}}.api.foo.get
@@ -46,6 +43,7 @@ paths:
                 type: boolean
                 description: Some boolean data that is returned.
                 example: true
+
   /complicated/complex:
     get:
       tags: [Complex]
@@ -57,7 +55,44 @@ paths:
           schema:
             $ref: '#/definitions/ComplexResponse'
 
+  /health:
+    get:
+      tags: [Healthcheck]
+      operationId: nlg_api.api.health.get
+      summary: Returns the health of the API.
+      responses:
+        200:
+          description: Everything is fine.
+          schema:
+            $ref: '#/definitions/Health'
+        424:
+          description: A dependency is not working.
+          schema:
+            $ref: '#/definitions/Health'
+        503:
+          description: The API is broken.
+          schema:
+            $ref: '#/definitions/Health'
+
 definitions:
+  Health:
+    type: object
+    required:
+      - health
+    properties:
+      health:
+        type: string
+        description: Health color of the system.
+        example: green
+      dependencies:
+        type: string
+        description: Message about depending APIs.
+        example: elasticsearch not running.
+      message:
+        type: string
+        description: The error message.
+        example: Could not load something.
+
   FooRequest:
     type: object
     required: # These fields have to exists
