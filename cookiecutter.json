@@ -10,5 +10,6 @@
     "api_port": "8080",
     "logstash_url": "logstash",
     "logstash_request_port": "1700",
-    "logstash_uwsgi_port": "1701"
+    "logstash_uwsgi_port": "1701",
+    "logstash_log_port": "1702"
 }

@@ -1,0 +1,3 @@
+logstash:
+  host: {{cookiecutter.logstash_url}}
+  port: {{cookiecutter.logstash_log_port}}

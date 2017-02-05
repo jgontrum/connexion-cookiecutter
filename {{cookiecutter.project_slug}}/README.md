@@ -43,6 +43,11 @@ input {
         type => "{{cookiecutter.project_slug}}_uwsgi"
         port => {{cookiecutter.logstash_uwsgi_port}}   
     }
+    tcp {
+        codec => json {}
+        type => "{{cookiecutter.project_slug}}_logs"
+        port => {{cookiecutter.logstash_log_port}}
+    }
 }
 
 filter {
