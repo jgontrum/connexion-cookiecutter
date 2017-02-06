@@ -75,3 +75,6 @@ filter {
 ### Connexion
 [Documentation](https://connexion.readthedocs.io/en/latest/)
 [Github](https://github.com/zalando/connexion)
+
+### Swagger
+[API.yml Editor](http://editor.swagger.io/#/)
