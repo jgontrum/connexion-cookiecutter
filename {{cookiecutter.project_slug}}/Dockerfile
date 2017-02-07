@@ -9,6 +9,7 @@ RUN apt-get install -y supervisor nginx
 RUN mkdir /app
 RUN pip install virtualenv
 COPY . /app
+RUN cd /app && make clean
 RUN cd /app && make
 
 # Configure nginx
