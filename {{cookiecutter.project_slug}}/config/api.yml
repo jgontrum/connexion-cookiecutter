@@ -58,7 +58,7 @@ paths:
   /health:
     get:
       tags: [Healthcheck]
-      operationId: nlg_api.api.health.get
+      operationId: {{cookiecutter.project_slug}}.api.health.get
       summary: Returns the health of the API.
       responses:
         200:
