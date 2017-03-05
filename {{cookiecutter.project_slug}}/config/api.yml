@@ -17,7 +17,14 @@ paths:
         - name: request
           in: body
           schema:
-            $ref: '#/definitions/FooRequest'
+            type: object
+            required: # These fields have to exists
+              - data
+            properties:
+              data:
+                type: string
+                description: Some string.
+                example: Blah!
       responses:
         200: # If we return with a 200 status code...
           description: Returns a part of the input (hey, it's just a demo...)
@@ -58,7 +65,7 @@ paths:
   /health:
     get:
       tags: [Healthcheck]
-      operationId: nlg_api.api.health.get
+      operationId: {{cookiecutter.project_slug}}.api.health.get
       summary: Returns the health of the API.
       responses:
         200:
@@ -92,17 +99,6 @@ definitions:
         type: string
         description: The error message.
         example: Could not load something.
-
-  FooRequest:
-    type: object
-    required: # These fields have to exists
-      - data
-    properties:
-      data:
-        type: string
-        description: Some string.
-        example: Blah!
-        readOnly: true
 
   ComplexResponse:
     type: object

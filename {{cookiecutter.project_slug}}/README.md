@@ -2,7 +2,7 @@
 
 {{cookiecutter.project_description}}
 
-The API can be reached under ```http://localhost:{{cookiecutter.api_port}}/api/v1```.
+The API is running at ```http://localhost:{{cookiecutter.api_port}}/api/v1```.
 
 ## Requirements
 
@@ -25,6 +25,16 @@ then add the Python logic for the *operationId* under /{{cookiecutter.project_sl
 
 Go to [here](http://localhost:{{cookiecutter.api_port}}/api/v1/ui) to view the brilliant SwaggerUI documentation of your API.
 
+{%- if cookiecutter.use_docker.startswith('y') -%}
+## Docker
+
+If configured, a Dockerfile ist autmatically generated at the project root. Call ``make build-docker`` to build a new image or 
+``make build-and-push`` to upload the image to the registry afterwards. 
+
+In case you want to run a container locally, run ``make start-docker``. With ``make attach-to-docker`` you can easily open a bash
+on the running container.
+{%- endif %}
+
 ## Healthcheck
 
 Configure a health check under /api/v1/health (GET).
@@ -34,6 +44,7 @@ Additionally, a JSON is returned containing the fields 'health', 'dependencies' 
 correspond to the status codes. The second one is the name of the depending services that cannot be reached and 'message'
 can hold a string defining the cause of a problem.
 
+{%- if cookiecutter.use_logstash.startswith('y') -%}
 ## Logstash
 
 By default, this project sends request logs and other (e.g. error logs) to different logstash UDP ports.
@@ -50,12 +61,12 @@ input {
     udp {
         codec => json {}
         type => "{{cookiecutter.project_slug}}_uwsgi"
-        port => {{cookiecutter.logstash_uwsgi_port}}   
+        port => {{cookiecutter.logstash_std_port}}   
     }
     tcp {
         codec => json {}
         type => "{{cookiecutter.project_slug}}_logs"
-        port => {{cookiecutter.logstash_log_port}}
+        port => {{cookiecutter.logstash_pythonlog_port}}
     }
 }
 
@@ -70,7 +81,7 @@ filter {
     }
 }
 ```
-
+{%- endif -%}
 ## Resources
 ### Connexion
 [Documentation](https://connexion.readthedocs.io/en/latest/)

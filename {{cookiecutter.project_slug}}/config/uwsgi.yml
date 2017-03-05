@@ -5,8 +5,10 @@ uwsgi:
   enable-threads: true
   workers: 8
   virtualenv: env/
+  {%- if cookiecutter.use_logstash.startswith('y') -%}
   logformat: {"service": "{{cookiecutter.project_slug}}", "ip": "%(addr)", "status": %(status), "method": "%(method)", "uri": "%(uri)", "duration": %(msecs)}
   req-logger: socket:{{cookiecutter.logstash_url}}:{{cookiecutter.logstash_request_port}}
   log-req-encoder: format ${msg}
-  logger: socket:{{cookiecutter.logstash_url}}:{{cookiecutter.logstash_uwsgi_port}}
+  logger: socket:{{cookiecutter.logstash_url}}:{{cookiecutter.logstash_std_port}}
   log-req-encoder: json {"message": "${msg}"}
+  {%- endif -%}

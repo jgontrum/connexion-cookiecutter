@@ -1,19 +1,21 @@
-click==6.6
+appdirs==1.4.2
+click==6.7
 clickclick==1.2.1
-connexion==1.0.129
-Flask==0.11.1
+connexion==1.1.5
+Flask==0.12
 itsdangerous==0.24
-Jinja2==2.8
-jsonschema==2.5.1
+Jinja2==2.9.5
+jsonschema==2.6.0
 MarkupSafe==0.23
 python-dateutil==2.6.0
 PyYAML==3.12
-requests==2.12.3
+requests==2.13.0
 six==1.10.0
 strict-rfc3339==0.7
 swagger-spec-validator==2.0.2
 uWSGI==2.0.14
-Werkzeug==0.11.11
+Werkzeug==0.11.15
+{% if cookiecutter.use_logstash.startswith('y') -%}
 python-logstash==0.4.6
+{%- endif -%}
 -e git://github.com/jgontrum/jgsnippets.git#egg=jgsnippets
-

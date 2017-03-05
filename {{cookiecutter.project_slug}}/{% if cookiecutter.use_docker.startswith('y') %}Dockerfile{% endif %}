@@ -7,9 +7,11 @@ RUN apt-get install -y supervisor nginx
 
 # Copy and set up the app
 RUN mkdir /app
+RUN rm -rf /app/.git
+RUN rm -rf /app/.idea
 RUN pip install virtualenv
 COPY . /app
-RUN cd /app && make
+RUN cd /app && make clean && make
 
 # Configure nginx
 RUN mv /app/config/nginx.conf /etc/nginx/sites-available/default

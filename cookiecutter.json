@@ -8,8 +8,13 @@
     "project_description": "RESTful APIs with Connexion + Flask + uWSGI",
     "license": ["MIT license", "BSD license", "ISC license", "Apache Software License 2.0", "GNU General Public License v3", "Not open source"],
     "api_port": "8080",
-    "logstash_url": "logstash",
-    "logstash_request_port": "1700",
-    "logstash_uwsgi_port": "1701",
-    "logstash_log_port": "1702"
+    "use_logstash": "yes",
+    "logstash_url": "{{ 'logstash' if cookiecutter.use_logstash.startswith('y') else '<not used>' }}",
+    "logstash_request_port": "{{ 1700 if cookiecutter.use_logstash.startswith('y') else '<not used>' }}",
+    "logstash_std_port": "{{ 1701 if cookiecutter.use_logstash.startswith('y') else '<not used>' }}",
+    "logstash_pythonlog_port": "{{ 1702 if cookiecutter.use_logstash.startswith('y') else '<not used>' }}",
+    "use_docker": "yes",
+    "docker_repository": "{{ '' if cookiecutter.use_docker.startswith('y') else '<not used>' }}",
+    "docker_project_name": "{{ cookiecutter.username_slug + '/' + cookiecutter.project_slug if cookiecutter.use_docker.startswith('y') else '<not used>' }}",
+    "docker_default_tag": "{{ 'latest' if cookiecutter.use_docker.startswith('y') else '<not used>' }}"
 }

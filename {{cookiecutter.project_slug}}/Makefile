@@ -1,4 +1,4 @@
-.PHONY: clean start build-docker start-docker attach-to-docker
+.PHONY: clean start {% if cookiecutter.use_docker.startswith('y') %}build-docker build-and-push start-docker attach-to-docker{% endif %}
 
 all: env/bin/python
 
@@ -18,17 +18,20 @@ clean:
 	find . -depth -name '*.egg-info' -exec rm -rfv {} \;
 	find . -depth -name '__pycache__' -exec rm -rfv {} \;
 
-build-docker: clean
-	docker build -t {{cookiecutter.username_slug}}/{{cookiecutter.project_slug}} .
-
-start-docker:
-	mkdir -p /tmp/{{cookiecutter.project_slug}}-logs
-	docker rm {{cookiecutter.project_slug}} || true
-	docker run --name "{{cookiecutter.project_slug}}" -p "127.0.0.1:{{cookiecutter.api_port}}:{{cookiecutter.api_port}}" -v "/tmp/{{cookiecutter.project_slug}}-logs:/app/logs" {{cookiecutter.username_slug}}/{{cookiecutter.project_slug}}
-
-attach-to-docker:
-	 docker exec -i -t {{cookiecutter.project_slug}} /bin/bash 
-
 start: env/bin/python
 	env/bin/uwsgi --yaml=config/uwsgi.yml
 
+{% if cookiecutter.use_docker.startswith('y') -%}
+build-docker:
+	docker build -t {{cookiecutter.docker_repository}}{{'/' if cookiecutter.docker_repository else ''}}{{cookiecutter.docker_project_name}}:{{cookiecutter.docker_default_tag}} .
+
+build-and-push: build-docker
+	docker push {{cookiecutter.docker_repository}}{{'/' if cookiecutter.docker_repository else ''}}{{cookiecutter.docker_project_name}}:{{cookiecutter.docker_default_tag}}
+
+start-docker:
+	docker rm {{cookiecutter.project_slug}} || true
+	docker run --name "{{cookiecutter.project_slug}}" -p "127.0.0.1:{{cookiecutter.api_port}}:{{cookiecutter.api_port}}" {{cookiecutter.docker_repository}}{{'/' if cookiecutter.docker_repository else ''}}{{cookiecutter.docker_project_name}}:{{cookiecutter.docker_default_tag}}
+
+attach-to-docker:
+	 docker exec -i -t {{cookiecutter.project_slug}} /bin/bash 
+{%- endif -%}
