@@ -17,5 +17,5 @@ uWSGI==2.0.14
 Werkzeug==0.11.15
 {% if cookiecutter.use_logstash.startswith('y') -%}
 python-logstash==0.4.6
-{%- endif -%}
+{%- endif %}
 -e git://github.com/jgontrum/jgsnippets.git#egg=jgsnippets
