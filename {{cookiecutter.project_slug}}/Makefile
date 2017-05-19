@@ -3,7 +3,7 @@
 all: env/bin/python
 
 env/bin/python:
-	virtualenv env -p python3.5 --no-site-packages
+	python3.6 -m venv env
 	env/bin/pip install --upgrade pip
 	env/bin/pip install wheel
 	env/bin/pip install -r requirements.txt
@@ -35,3 +35,7 @@ start-docker:
 attach-to-docker:
 	 docker exec -i -t {{cookiecutter.project_slug}} /bin/bash 
 {%- endif -%}
+
+update-all-packages: env/bin/python
+	 env/bin/pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 env/bin/pip install -U
+

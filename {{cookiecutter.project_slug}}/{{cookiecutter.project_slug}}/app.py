@@ -20,7 +20,7 @@ formatter = logging.Formatter(
 ch.setFormatter(formatter)
 logger.addHandler(ch)
 
-{%- if cookiecutter.use_logstash.startswith('y') -%}
+{% if cookiecutter.use_logstash.startswith('y') -%}
 logstash_options = options()['logstash']
 ls = logstash.TCPLogstashHandler(
     host=logstash_options['host'],
