@@ -71,35 +71,17 @@ paths:
         200:
           description: Everything is fine.
           schema:
-            $ref: '#/definitions/Health'
+            $ref: 'https://s3.amazonaws.com/sengiai-swagger/general/health.yml'
         424:
           description: A dependency is not working.
           schema:
-            $ref: '#/definitions/Health'
+            $ref: 'https://s3.amazonaws.com/sengiai-swagger/general/health.yml'
         503:
           description: The API is broken.
           schema:
-            $ref: '#/definitions/Health'
+            $ref: 'https://s3.amazonaws.com/sengiai-swagger/general/health.yml'
 
 definitions:
-  Health:
-    type: object
-    required:
-      - health
-    properties:
-      health:
-        type: string
-        description: Health color of the system.
-        example: green
-      dependencies:
-        type: string
-        description: Message about depending APIs.
-        example: elasticsearch not running.
-      message:
-        type: string
-        description: The error message.
-        example: Could not load something.
-
   ComplexResponse:
     type: object
     required:
@@ -149,3 +131,4 @@ definitions:
             type: string
             description: Some string again.
             example: I am a string in an object
+
