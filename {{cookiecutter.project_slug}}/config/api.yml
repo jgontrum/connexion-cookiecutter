@@ -71,15 +71,15 @@ paths:
         200:
           description: Everything is fine.
           schema:
-            $ref: 'https://s3.amazonaws.com/sengiai-swagger/general/health.yml#/Health'
+            $ref: 'https://s3.amazonaws.com/sengiai-swagger/general/health.json#/Health'
         424:
           description: A dependency is not working.
           schema:
-            $ref: 'https://s3.amazonaws.com/sengiai-swagger/general/health.yml#/Health'
+            $ref: 'https://s3.amazonaws.com/sengiai-swagger/general/health.json#/Health'
         503:
           description: The API is broken.
           schema:
-            $ref: 'https://s3.amazonaws.com/sengiai-swagger/general/health.yml#/Health'
+            $ref: 'https://s3.amazonaws.com/sengiai-swagger/general/health.json#/Health'
 
 definitions:
   ComplexResponse:
