@@ -1,0 +1,12 @@
+.git
+*.swp
+*.swo
+.DS_STORE
+*.md
+env
+.idea
+{{cookiecutter.project_slug}}.egg-info
+!README.md
+coverage.xml
+.coverage
+
