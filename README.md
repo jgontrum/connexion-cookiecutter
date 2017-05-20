@@ -33,6 +33,9 @@ env/bin/start_debug
 
 ## Scripts
 ```make``` Build project
+
 ```make clean``` Clean folder
+
 ```make test``` Run tests
+
 ```make build-and-push``` Build Docker image and push to repository
