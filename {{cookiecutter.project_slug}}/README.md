@@ -6,9 +6,7 @@ The API is running at ```http://localhost:{{cookiecutter.api_port}}/api/v1```.
 
 ## Requirements
 
-- Python 3.5: [Instructions](https://www.python.org/downloads/)
-
-- virtualenv: [Instructions](https://virtualenv.pypa.io/en/stable/installation/)
+- Python 3.6: [Instructions](https://www.python.org/downloads/)
 
 ## Installation
 
@@ -23,7 +21,7 @@ then add the Python logic for the *operationId* under /{{cookiecutter.project_sl
 
 ## SwaggerUI
 
-Go to [here](http://localhost:{{cookiecutter.api_port}}/api/v1/ui) to view the brilliant SwaggerUI documentation of your API.
+Go to [here](http://localhost:8080/api/v1/ui) to view the brilliant SwaggerUI documentation of your API.
 
 {%- if cookiecutter.use_docker.startswith('y') -%}
 ## Docker
@@ -85,7 +83,8 @@ filter {
 ## Resources
 ### Connexion
 [Documentation](https://connexion.readthedocs.io/en/latest/)
-[Github](https://github.com/zalando/connexion)
+[Repository](https://github.com/zalando/connexion)
 
 ### Swagger
 [API.yml Editor](http://editor.swagger.io/#/)
+
