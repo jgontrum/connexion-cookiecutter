@@ -39,3 +39,5 @@ attach-to-docker:
 update-all-packages: env/bin/python
 	 env/bin/pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 env/bin/pip install -U
 
+test: env/bin/python
+	env/bin/py.test --cov={{cookiecutter.project_slug}} {{cookiecutter.project_slug}}_test -vv
