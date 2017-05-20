@@ -1,6 +1,6 @@
 # Connexion Cookiecutter Template
 
-Cookiecutter is a templating tool that helps you to get started with a project really quickly. Just answer some questions about you and your projects and a ready-to-go project folder will be created.
+This Cookiecutter template helps you setting up a RESTful API in minutes. Just answer some questions about you and your projects and a ready-to-go python project will be created.
 
 ## Requirements
 
@@ -19,15 +19,15 @@ env/bin/start_debug
 
 ## Features
 
-- Ready-to-go Python 3.6 project
-- Routing defined in Swagger definition
-- Strict model validation by default
-- Dockerfile
+- Ready-to-go **Python 3.6** project
+- Routing defined in **Swagger** definition
+- Strict **model validation** by default
+- **Dockerfile**
 - Deployed as a uwsgi app behind nginx
 - Direct support for static files (-> nginx)
-- Logstash configuration (optional)
-- Examples for unit and integration tests
-- Coverage reports for tests
+- **Logstash** configuration (optional)
+- Examples for **unit and integration tests**
+- **Coverage reports** for tests
 - Configuration for SonarQube
 
 
