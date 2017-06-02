@@ -21,3 +21,4 @@ strict-rfc3339==0.7
 swagger-spec-validator==2.1.0
 uWSGI==2.0.15
 urllib3==1.21.1
+prance==0.5.1

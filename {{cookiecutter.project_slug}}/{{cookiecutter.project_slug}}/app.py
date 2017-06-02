@@ -4,6 +4,9 @@ import logging
 import logstash
 {%- endif %}
 import connexion
+import yaml
+import json
+from prance import ResolvingParser
 
 from {{cookiecutter.project_slug}} import options
 
@@ -30,10 +33,14 @@ logger.addHandler(ls)
 {%- endif %}
 
 app = connexion.App("{{cookiecutter.project_name}}")
-application = app.app
-app.add_api("config/api.yml",
+parsed_definition = yaml.load(open("config/api.yml"))
+swagger_definiton = ResolvingParser(
+    spec_string=json.dumps(parsed_definition)).specification
+app.add_api(swagger_definiton,
             strict_validation=True,
             validate_responses=True)
+
+application = app.app
 
 if __name__ == '__main__':
     app.run(port=8080, server='flask')
