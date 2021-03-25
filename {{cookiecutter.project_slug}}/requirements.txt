@@ -1,7 +1,7 @@
 Flask==0.12.2
 Jinja2==2.9.6
 MarkupSafe==1.0
-PyYAML==3.12
+PyYAML==5.4
 Werkzeug==0.12.2
 appdirs==1.4.3
 click==6.7
